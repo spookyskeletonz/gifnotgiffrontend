@@ -5,7 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>GifNotGif</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -79,17 +80,42 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    GifNotGif
+                    <div class="container" style="text-align: center">
+                        <form class="form-inline" method="POST" action="{{url('/')}}">
+                            <div class="form-group">
+                                <label>
+                                <input type="text" class="form-control" placeholder="Enter instrument code" name="instrumentcode">
+                                <input type="text" class="form-control" placeholder="Enter instrument code" name="instrumentcode2">
+                                <input type="text" class="form-control" placeholder="Enter topic code" name="topiccode">
+                                <input type="text" class="form-control" placeholder="Enter topic code" name="topiccode2">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                </label>
+                            </div>
+                            <button type="submit" class="btn">go</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="/assets/js/bootstrap-datepicker.min.js">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+    </div>
+</div>
     </body>
 </html>
