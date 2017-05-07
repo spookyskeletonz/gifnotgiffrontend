@@ -82,7 +82,7 @@
                 <div class="title m-b-md">
                     GifNotGif
                     <div class="container" style="text-align: center">
-                        <form class="form-inline" method="POST" action="{{url('/')}}">
+                        <form action='verify' class="form-inline" method="GET" action="{{url('/')}}">
                             <div class="form-group">
                                 <label>
                                 <input type="text" class="form-control" placeholder="Enter instrument code" name="instrumentcode">
