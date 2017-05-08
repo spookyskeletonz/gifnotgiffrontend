@@ -8,6 +8,9 @@
         <title>GifNotGif</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
@@ -64,31 +67,28 @@
                 margin-bottom: 30px;
             }
         </style>
+        @if(Session::has('message'))
+            <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+        @endif
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
 
             <div class="content">
                 <div class="title m-b-md">
                     GifNotGif
                     <div class="container" style="text-align: center">
-                        <form action='verify' class="form-inline" method="GET" action="{{url('/')}}">
+                        <form class="form" method="POST" action="{{url('/')}}">
                             <div class="form-group">
                                 <label>
-                                <input type="text" class="form-control" placeholder="Enter instrument code" name="instrumentcode">
-                                <input type="text" class="form-control" placeholder="Enter instrument code" name="instrumentcode2">
-                                <input type="text" class="form-control" placeholder="Enter topic code" name="topiccode">
-                                <input type="text" class="form-control" placeholder="Enter topic code" name="topiccode2">
+                                <p>
+                                <input type="text" class="form-control" placeholder="Enter instrument codes comma separated" name="instrumentcode">
+                                <p>
+                                <input type="text" class="form-control" placeholder="Enter topic codes comma separated" name="topiccode">
+                                </p><p>
+                                <input type="text" class="form-control" placeholder="yyyy-mm-dd" name="startdate">
+                                <input type="text" class="form-control" placeholder="yyyy-mm-dd" name="enddate">
+                                </p>
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 </label>
                             </div>
@@ -98,24 +98,5 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-    <div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript" src="/assets/js/bootstrap-datepicker.min.js">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-        </script>
-    </div>
-</div>
     </body>
 </html>

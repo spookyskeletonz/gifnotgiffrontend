@@ -11,20 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::post('/', function() {
-	return view('welcome');
+Route::get('/', 'PagesController@home');
 
-});
-Route::get('verify', function() {
-     $instrumentcode = Input::get('instrumentcode');
-     $instrumentcode2 = Input::get('instrumentcode2');
-     $topiccode = Input::get('topiccode');
-     $topiccode2 = Input::get('topiccode2');
-     $path = storage_path('app/gifnotgif.jar');
-     $result = shell_exec("java -jar $path $instrumentcode $instrumentcode2 $topiccode $topiccode2");
-     var_dump($result);
-});
+Route::post('/', 'PagesController@findArticles');
 
