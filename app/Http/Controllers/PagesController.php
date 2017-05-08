@@ -10,7 +10,7 @@ class PagesController extends Controller
 {
 	public function findArticles(Request $request){
 		if($this->_verify($request) == 0){
-			return view('welcome');
+			return view('welcome')->with('alert', 'Please use correct input format!');
 		} else {
 			return $this->_getArticles($request);
 		}
@@ -57,8 +57,6 @@ class PagesController extends Controller
 		if($isverified == TRUE){
 			return 1;
 		} else {
-			Session::flash('message', 'Please input correct format!');
-			Session::flash('alert-class', 'alert-danger');
 			return 0;
 		}
 	}
