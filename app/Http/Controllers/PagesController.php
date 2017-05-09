@@ -8,12 +8,12 @@ use Exception;
 use App\Http\Controllers\Controller;
 class PagesController extends Controller
 {
-               public function findArticles(Request $request){
-		//if($this->_verify($request) == 0){
-		//	return view('welcome')->with('alert', 'Please use correct input format!');
-		//} else {
+   public function findArticles(Request $request){
+		if($this->_verify($request) == 0){
+			return view('welcome')->with('alert', 'Please use correct input format!');
+		} else {
 			return $this->_getArticles($request);
-		//}
+		}
 	}
 
 	private function _getArticles(Request $request){
@@ -22,7 +22,8 @@ class PagesController extends Controller
 		$startdate = $request->startdate;
 		$enddate = $request->enddate;
 
-                $input = "start_date=".$startdate."&end_date=".$enddate."&instrument_id=".$instrumentcode."&topic_codes=".$topiccode; 
+		$input = "start_date=".$startdate."T00:00:00Z"."&end_date=".$enddate."T00:00:00Z"."&instrument_id=".$instrumentcode."&topic_codes=".$topiccode;
+
 		$url = "http://139.59.224.37/api/api.cgi?".$input;
 
 		$result = file_get_contents($url);
@@ -33,8 +34,9 @@ class PagesController extends Controller
 	public function home(){
 		return view('welcome');
 	}
-        private function _verify(Request $request){
-	        $instrumentcode = $request->instrumentcode;
+  
+   private function _verify(Request $request){
+	   $instrumentcode = $request->instrumentcode;
 		$topiccode = $request->topiccode;
 		$startdate = $request->startdate;
 		$enddate = $request->enddate;
