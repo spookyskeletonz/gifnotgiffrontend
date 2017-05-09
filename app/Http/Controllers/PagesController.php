@@ -75,21 +75,26 @@ class PagesController extends Controller
 
 		//$url = "https://alphawolfwolf.herokuapp.com/api/finance?instrumentID=".$instrument_id."&list_of_var=CM_Return,AV_Return&dateOfInterest=".$dateOfInterest;
 		$url = "https://alphawolfwolf.herokuapp.com/api/finance?instrumentID=ABP.AX&list_of_var=CM_Return,AV_Return&upper_window=3&lower_window=5&dateOfInterest=10/12/2012";
-                $result = file_get_contents($url);
+        $result = file_get_contents($url);
 		$vars = json_decode($result, true);
+        $vars = str_replace("string(10)","", $vars);
+		var_dump($vars['CompanyReturns'][0]['Data']);
                                   
                
                 $dates = ($vars['CompanyReturns'][0]['Data'][0]['Date']);
-                $dates = str_replace("string", "",$dates);
+                //$dates = preg_replace("string", "", $dates);
+                $dates1 = str_replace("string", "",$dates);
                 //str_replace(array('\'','', $dates));
-                var_dump($dates);
+                var_dump($dates1);
  
                 $cm = ($vars['CompanyReturns'][0]['Data'][0]['CM_Return']);
                 //str_replace(array('float','', $cm));
                 //str_replace(array( '(', ')' , '', $cm);
-                var_dump($cm);
-                return view('chartjs1')
-                  ->with('dates')
-                  ->with('cm');
+                //$cm = str_replace("(", "",$cm);
+
+                //var_dump($cm);
+                return view('chartjs1', ['dates' => $dates, 'cm' => $cm]);
+                
+                 
 	}
 }
