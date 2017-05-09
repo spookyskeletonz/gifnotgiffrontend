@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 class PagesController extends Controller
 {
    public function findArticles(Request $request){
+   	if($request->topiccode2 == ""){
+   		$request->topiccode = $request->topiccode1;
+   	} else {
+   		$request->topiccode = $request->topiccode1.",".$request->topiccode2;
+   	}
 		if($this->_verify($request) == 0){
 			return view('welcome')->with('alert', 'Please use correct input format!');
 		} else {
