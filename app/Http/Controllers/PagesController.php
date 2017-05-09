@@ -40,6 +40,7 @@ class PagesController extends Controller
 	public function home(){
 		return view('welcome');
 	}
+
         private function _verify(Request $request){
 	        $instrumentcode = $request->instrumentcode;
 		$topiccode = $request->topiccode;
@@ -61,4 +62,10 @@ class PagesController extends Controller
 			return 0;
 		}
 	}
+	public function getChart(Request $request){
+		$InstrumentIDs = $request->InstrumentIDs;
+		$TimeStamp = $request->TimeStamp;
+		return view('chart',['InstrumentIDs' => $InstrumentIDs, 'TimeStamp' => $TimeStamp] );
+	}
+
 }
