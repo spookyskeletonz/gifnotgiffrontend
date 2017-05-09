@@ -15,3 +15,4 @@ Route::get('/', 'PagesController@home');
 
 Route::post('/', 'PagesController@findArticles');
 
+Route::get('/test', 'PagesController@viewReturns');
