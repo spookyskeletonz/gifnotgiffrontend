@@ -9,6 +9,10 @@ use App\Http\Controllers\Controller;
 class PagesController extends Controller
 {
    public function findArticles(Request $request){
+   	$start = explode("/", $request->startdate);
+   	$request->startdate = $start[2]."-".$start[1]."-".$start[0];
+   	$end = explode("/", $request->enddate);
+   	$request->enddate = $end[2]."-".$end[1]."-".$end[0];
    	if($request->topiccode2 == ""){
    		$request->topiccode = $request->topiccode1;
    	} else {

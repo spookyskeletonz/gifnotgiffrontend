@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
@@ -16,7 +16,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <!-- Typeahead.js Bundle -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
-
+        <!-- DatePicker.js bundle -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
         <!-- Styles -->
         <style>
             html, body {
@@ -127,14 +128,14 @@
                         <form class="form" method="POST" action="{{url('/')}}">
                             <div id="topiccodes" class="form-group">
                                 <label>
-                                <p>
                                 <input type="text" class="form-control" placeholder="Enter instrument codes comma separated" name="instrumentcode" required>
-                                <p>
-                                </p><p>
-                                <input type="text" class="form-control" placeholder="yyyy-mm-dd" name="startdate" required>
-                                <input type="text" class="form-control" placeholder="yyyy-mm-dd" name="enddate" required>
-                                <input style="font-size:25px;margin:0px auto;width:300px;" name="topiccode1" class="typeahead" type="text" placeholder="Topic Code 1" required>
-                                <input style="font-size:25px;margin:0px auto;width:300px;" name="topiccode2" class="typeahead" type="text" placeholder="(optional)Topic Code 2">
+                                <div class="input-group input-daterange">
+                                    <input placeholder="Pick start date" name = "startdate" type="text" class="form-control">
+                                    <span class="input-group-addon">to</span>
+                                    <input placeholder="Pick end date" name="enddate" type="text" class="form-control">
+                                </div>
+                                <input name="topiccode1" class="typeahead" type="text" placeholder="Topic Code 1" required>
+                                <input name="topiccode2" class="typeahead" type="text" placeholder="(optional)Topic Code 2">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 </label>
                             </div>
@@ -145,6 +146,11 @@
             </div>
         </div>
         <script>
+            $('.input-daterange input').each(function() {
+                $(this).datepicker({
+                    format: 'dd/mm/yyyy'
+                });
+            });
             var substringMatcher = function(strs) {
                 return function findMatches(q, cb) {
                     var matches, substringRegex;
