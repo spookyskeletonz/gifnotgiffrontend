@@ -69,34 +69,33 @@
 	    </head>
 	    <body>
 	<div class="card-columns">
-		@for($i = 0; $i<10; $i++)
+		@foreach ($articles as $article)
 
 		@php
-		$formattedTime = "2015-10-01T18:35:46.961Z";
-		$formattedTime = explode("T",$articles[0]->TimeStamp)[0];
+		$formattedTime = explode("T",$article->TimeStamp)[0];
 		$parts = explode("-",$formattedTime);
 		$formattedTime = $parts[2]."/".$parts[1]."/".$parts[0];
 		@endphp
 		<div  class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">{{ $articles[0]->Headline }}</h3>
+				<h3 class="panel-title">{{ $article->Headline }}</h3>
 			</div>
-			<div class="panel-body"> {{ $articles[0]->NewsText }}</div>
+			<div class="panel-body"> {{ $article->NewsText }}</div>
 			<ul class="list-group">
-    <li class="list-group-item">{{ $articles[0]->InstrumentIDs }}</li>
-		 <li class="list-group-item">{{$articles[0]->{'Topic Codes'} }}</li>
+    <li class="list-group-item">{{ $article->InstrumentIDs }}</li>
+		 <li class="list-group-item">{{$article->{'Topic Codes'} }}</li>
     <li class="list-group-item">{{$formattedTime }}</li>
   </ul>
 	<form class="form" method="POST" action="{{url('/chart')}}">
 			<div class="form-group">
-				  <input type="hidden" name="InstrumentIDs" value={{ $articles[0]->InstrumentIDs }}>
-					<input type="hidden" name="TimeStamp" value={{ $articles[0]->TimeStamp }}>
+				  <input type="hidden" name="InstrumentIDs" value={{ $article->InstrumentIDs }}>
+					<input type="hidden" name="TimeStamp" value={{ $article->TimeStamp }}>
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<button type="submit" class="btn">View chart</button>
 				</div>
 		</form>
 		</div>
-		@endfor
+		@endforeach
 	</div>
 </body>
 </html>

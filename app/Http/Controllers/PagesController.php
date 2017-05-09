@@ -27,14 +27,14 @@ class PagesController extends Controller
 
 		$result = file_get_contents($url);
 
-		$testString ='{"NewsDataSet": [{"InstrumentIDs": "BHP.AX,BLT.L","Topic Codes": "AMERS,COM","TimeStamp": "2015-10-01T18:35:46.961Z","Headline": "UPDATE 1-Peru copper output surges again in August on Antamina, new mines","NewsText": " (Adds August production data for certain mines)LIMA"}]}';
+		//$testString ='{"NewsDataSet": [{"InstrumentIDs": "BHP.AX,BLT.L","Topic Codes": "AMERS,COM","TimeStamp": "2015-10-01T18:35:46.961Z","Headline": "UPDATE 1-Peru copper output surges again in August on Antamina, new mines","NewsText": " (Adds August production data for certain mines)LIMA"}]}';
 
 		//var_dump($result);
 
-		$newsData = json_decode($testString);
-		echo($testString);
+		$newsData = json_decode($result);
+		//echo($testString);
 		var_dump($newsData);
-   return view('data', ['articles' => $newsData->NewsDataSet]);
+   return view('data', ['articles' => $newsData[1]->NewsDataSet]);
 	}
 
 	public function home(){
