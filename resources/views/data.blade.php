@@ -105,27 +105,20 @@
 			            <h4 class="modal-title" id="myModalLabel">Chart</h4>
 			         </div>
 			         <div class="modal-body">
-			         @php
-			         $instrument_ids = explode(",", $article->InstrumentIDs)
-			         @endphp
 			         <p>
-			         @foreach($instrument_ids as $instrument_id)
 			            @php
 							$dateOfInterest = $article->TimeStamp;
 						
 							$dateOfInterest = explode("T",$dateOfInterest)[0];
 							$parts = explode("-",$dateOfInterest);
-							$dateOfInterest = $parts[2]."/".$parts[1]."/".$parts[0];
-							
-							$url = "https://alphawolfwolf.herokuapp.com/api/finance?instrumentID=".$instrument_id."&upper_window=5&lower_window=5&list_of_var=CM_Return,AV_Return&dateOfInterest=".$dateOfInterest;
+							$dateOfInterest = $parts[2]."%2F".$parts[1]."%2F".$parts[0];
+							$article->InstrumentIDs = preg_replace("/,\d+[^,]*,/",",",$article->InstrumentIDs);
+							$url = "http://ec2-54-160-211-66.compute-1.amazonaws.com:3000/api/company_returns?InstrumentID=".$article->InstrumentIDs."&UpperWindow=5&LowerWindow=5&ListOfVar=AV_Return&DateOfInterest=".$dateOfInterest;
 							$result = file_get_contents($url);
 							$vars = json_decode($result, true);
-							$vars = str_replace("string(10)","", $vars);      
-							//$data = ($vars['CompanyReturns'][0]['Data']);
-							echo $instrument_id;
+							$vars = str_replace("string(10)","", $vars); 
+							var_dump($vars);
 							@endphp
-							<canvas id="graph" width="400" height="400"></canvas>
-						@endforeach
 						</p>
 			         </div>
 			    	</div>
@@ -135,6 +128,5 @@
 		</div>
 		@endforeach
 	</div>
-	
 </body>
 </html>
