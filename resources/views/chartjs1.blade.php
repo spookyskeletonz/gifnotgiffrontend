@@ -17,16 +17,16 @@
 <script>
 var labels = new Array();
 var dataValues = new Array();
-var text = "<?php Print($dates); ?>";
-var value = <?php Print($cm); ?>;
 
-labels.push(text);
-dataValues.push(value);
+<?php foreach ($data as $values) : ?>
+    var value = <?php Print($values['CM_Return']); ?>;
+    var text = "<?php Print($values['Date']); ?>";
+    labels.push(text);
+    dataValues.push(value);
+<?php endforeach; ?>
 
 var data = {
   labels: labels,
-  //labels = {!! json_encode($dates) !!},
-  //labels = $date;
   datasets: [
     {
       fillColor: "rgba(220,220,220,0.2)",
