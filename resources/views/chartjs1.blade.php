@@ -15,25 +15,18 @@
 </html>
 
 <script>
-/*
-  $(function(){
-   $.getJSON("/test", function (result) {
-   
-   var labels=[],data=[];
-    //for (var i = 0; i < 10; i++) {
-        //labels.push(result.['CompanyReturns'][0]['Data'][i]['Date']);
-        //data.push(result.['CompanyReturns'][0]['Data'][i]['CM_Return']);
-       // labels.push(result[i]);
-       // data.push(result[i]);
-        labels.push($dates[i]);
-        data.push($cm[i]);  
-   }
-*/
+var labels = new Array();
+var dataValues = new Array();
+var text = "<?php Print($dates); ?>";
+var value = <?php Print($cm); ?>;
+
+labels.push(text);
+dataValues.push(value);
+
 var data = {
-  labels: [$date, 'February', 'March'],
+  labels: labels,
   //labels = {!! json_encode($dates) !!},
   //labels = $date;
-
   datasets: [
     {
       fillColor: "rgba(220,220,220,0.2)",
@@ -42,9 +35,7 @@ var data = {
       pointStrokeColor: "#fff",
       pointHighlightFill: "#fff",
       pointHighlightStroke: "rgba(220,220,220,1)",
-      //data = $cm
-      data: [30, 122, 90]
-     // data = {!! json_encode($cm) !!}
+      data: dataValues
     },
     {
       fillColor: "rgba(100,220,220,0.7)",
@@ -53,17 +44,10 @@ var data = {
       pointStrokeColor: "#fff",
       pointHighlightFill: "#fff",
       pointHighlightStroke: "rgba(220,220,220,1)",
-      data: [10, 52, 2]
-      //data = $cm
-      
-      //data: {!! json_encode($cm) !!}
+      data: dataValues
     }
   ]
 };
-
 var context = document.querySelector('#graph').getContext('2d');
-
 new Chart(context).Line(data);
-
-
 </script>
