@@ -72,23 +72,4 @@ class PagesController extends Controller
 		}
 	}
 
-	public function viewReturns(Request $request){
-		//Default value for testing
-		$instrument_id = "BHP.AX";
-		$dateOfInterest = "2015-10-01T18:35:46.961Z";
-	
-		$dateOfInterest = explode("T",$dateOfInterest)[0];
-		$parts = explode("-",$dateOfInterest);
-		$dateOfInterest = $parts[2]."/".$parts[1]."/".$parts[0];
-		//https://alphawolfwolf.herokuapp.com/api/finance?instrumentID=BHP.AX&list_of_var=CM_Return,AV_Return&upper_window=3&lower_window=5&dateOfInterest=01/10/2015
-		$url = "https://alphawolfwolf.herokuapp.com/api/finance?instrumentID=".$instrument_id."&upper_window=5&lower_window=5&list_of_var=CM_Return,AV_Return&dateOfInterest=".$dateOfInterest;
-		$result = file_get_contents($url);
-		$vars = json_decode($result, true);
-        $vars = str_replace("string(10)","", $vars);
-		//var_dump($vars['CompanyReturns'][0]['Data']);
-                                  
-        $data = ($vars['CompanyReturns'][0]['Data']);
-        return view('chartjs1', ['data' => $data]);
-                
-	}
 }

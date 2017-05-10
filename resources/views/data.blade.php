@@ -13,6 +13,8 @@
 	        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	        <!-- Bootstrap JS -->
 	        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	        <!-- ChartJS -->
+	        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 
 	        <!-- Fonts -->
 	        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -92,8 +94,6 @@
   </ul>
 	<form class="form">
 			<div class="form-group">
-				<input type="hidden" name="InstrumentIDs" value={{ $article->InstrumentIDs }}>
-				<input type="hidden" name="TimeStamp" value={{ $article->TimeStamp }}>
 				<a href="#" class="btn btn-lg btn-success" 
    				data-toggle="modal" 
    				data-target="#basicModal">View chart</a>
@@ -105,7 +105,28 @@
 			            <h4 class="modal-title" id="myModalLabel">Chart</h4>
 			         </div>
 			         <div class="modal-body">
-			            <h3>Modal Body</h3>
+			         @php
+			         $instrument_ids = explode(",", $article->InstrumentIDs)
+			         @endphp
+			         <p>
+			         @foreach($instrument_ids as $instrument_id)
+			            @php
+							$dateOfInterest = $article->TimeStamp;
+						
+							$dateOfInterest = explode("T",$dateOfInterest)[0];
+							$parts = explode("-",$dateOfInterest);
+							$dateOfInterest = $parts[2]."/".$parts[1]."/".$parts[0];
+							
+							$url = "https://alphawolfwolf.herokuapp.com/api/finance?instrumentID=".$instrument_id."&upper_window=5&lower_window=5&list_of_var=CM_Return,AV_Return&dateOfInterest=".$dateOfInterest;
+							$result = file_get_contents($url);
+							$vars = json_decode($result, true);
+							$vars = str_replace("string(10)","", $vars);      
+							//$data = ($vars['CompanyReturns'][0]['Data']);
+							echo $instrument_id;
+							@endphp
+							<canvas id="graph" width="400" height="400"></canvas>
+						@endforeach
+						</p>
 			         </div>
 			    	</div>
 			  	</div>
@@ -114,5 +135,6 @@
 		</div>
 		@endforeach
 	</div>
+	
 </body>
 </html>
