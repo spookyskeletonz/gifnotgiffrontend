@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>JS Bin</title>
+  <title>Chart</title>
 </head>
 <body>
   
@@ -16,35 +16,40 @@
 
 <script>
 var labels = new Array();
-var dataValues = new Array();
+var cm_Values = new Array();
+var av_Values = new Array();
 
 <?php foreach ($data as $values) : ?>
-    var value = <?php Print($values['CM_Return']); ?>;
+    var cm = <?php Print($values['CM_Return']); ?>;
+    var av = <?php Print($values['AV_Return']); ?>;
     var text = "<?php Print($values['Date']); ?>";
+    
     labels.push(text);
-    dataValues.push(value);
+    cm_Values.push(cm);
+    av_Values.push(av)
 <?php endforeach; ?>
-
 var data = {
   labels: labels,
   datasets: [
     {
+      
       fillColor: "rgba(220,220,220,0.2)",
       strokeColor: "rgba(220,220,220,1)",
       pointColor: "rgba(220,220,220,1)",
       pointStrokeColor: "#fff",
       pointHighlightFill: "#fff",
       pointHighlightStroke: "rgba(220,220,220,1)",
-      data: dataValues
+      data: cm_Values
     },
     {
+
       fillColor: "rgba(100,220,220,0.7)",
       strokeColor: "rgba(220,220,220,1)",
       pointColor: "rgba(220,220,220,1)",
       pointStrokeColor: "#fff",
       pointHighlightFill: "#fff",
       pointHighlightStroke: "rgba(220,220,220,1)",
-      data: dataValues
+      data: av_Values
     }
   ]
 };
