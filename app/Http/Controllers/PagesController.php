@@ -38,18 +38,24 @@ class PagesController extends Controller
 
 		//$testString ='{"NewsDataSet": [{"InstrumentIDs": "BHP.AX,BLT.L","Topic Codes": "AMERS,COM","TimeStamp": "2015-10-01T18:35:46.961Z","Headline": "UPDATE 1-Peru copper output surges again in August on Antamina, new mines","NewsText": " (Adds August production data for certain mines)LIMA"}]}';
 
-		//var_dump($result);
+		//echo($result);
 
 		$newsData = json_decode($result);
+		if($newsData  === NULL){
+			echo("Couldn't find any articles matching those search terms.");
+			 echo("<a href='/'>  Try Again</a>");
+			 return;
+		//	return view('noneFound');
+		}
 		//echo($testString);
-		var_dump($newsData);
-   	return view('data', ['articles' => $newsData[1]->NewsDataSet]);
+		//var_dump($newsData);
+   	return view('data', ['articles' => array_unique($newsData[1]->NewsDataSet, SORT_REGULAR)]);
 	}
 
 	public function home(){
 		return view('welcome');
 	}
-  
+
   private function _verify(Request $request){
 	   $instrumentcode = $request->instrumentcode;
 		 $topiccode = $request->topiccode;
