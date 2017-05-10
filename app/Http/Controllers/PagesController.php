@@ -43,7 +43,7 @@ class PagesController extends Controller
 		$newsData = json_decode($result);
 		//echo($testString);
 		var_dump($newsData);
-   return view('data', ['articles' => $newsData[1]->NewsDataSet]);
+   	return view('data', ['articles' => $newsData[1]->NewsDataSet]);
 	}
 
 	public function home(){
