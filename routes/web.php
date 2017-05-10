@@ -14,5 +14,3 @@
 Route::get('/', 'PagesController@home');
 
 Route::post('/', 'PagesController@findArticles');
-
-Route::post('/chart', 'PagesController@getChart');

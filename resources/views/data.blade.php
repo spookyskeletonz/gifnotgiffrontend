@@ -6,9 +6,13 @@
 	        <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	        <!-- Fonts -->
+	        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
+	        <!-- jQuery (necessary for Bootstrap's JavaScript plugins and Typeahead) -->
 	        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	        <!-- Bootstrap JS -->
+	        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 	        <!-- Fonts -->
 	        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -86,13 +90,26 @@
 		 <li class="list-group-item">{{$article->{'Topic Codes'} }}</li>
     <li class="list-group-item">{{$formattedTime }}</li>
   </ul>
-	<form class="form" method="POST" action="{{url('/chart')}}">
+	<form class="form">
 			<div class="form-group">
-				  <input type="hidden" name="InstrumentIDs" value={{ $article->InstrumentIDs }}>
-					<input type="hidden" name="TimeStamp" value={{ $article->TimeStamp }}>
-					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-				<button type="submit" class="btn">View chart</button>
-				</div>
+				<input type="hidden" name="InstrumentIDs" value={{ $article->InstrumentIDs }}>
+				<input type="hidden" name="TimeStamp" value={{ $article->TimeStamp }}>
+				<a href="#" class="btn btn-lg btn-success" 
+   				data-toggle="modal" 
+   				data-target="#basicModal">View chart</a>
+			</div>
+			<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			   <div class="modal-dialog">
+			      <div class="modal-content">
+			         <div class="modal-header">
+			            <h4 class="modal-title" id="myModalLabel">Chart</h4>
+			         </div>
+			         <div class="modal-body">
+			            <h3>Modal Body</h3>
+			         </div>
+			    	</div>
+			  	</div>
+			</div>
 		</form>
 		</div>
 		@endforeach

@@ -41,8 +41,6 @@ class PagesController extends Controller
 		//var_dump($result);
 
 		$newsData = json_decode($result);
-		//echo($testString);
-		var_dump($newsData);
    	return view('data', ['articles' => $newsData[1]->NewsDataSet]);
 	}
 
@@ -52,29 +50,23 @@ class PagesController extends Controller
   
   private function _verify(Request $request){
 	   $instrumentcode = $request->instrumentcode;
-		 $topiccode = $request->topiccode;
-		 $startdate = $request->startdate;
-		 $enddate = $request->enddate;
-		 $isverified = TRUE;
-		 if(preg_match("/^\d\d\d\d\-\d\d\-\d\d$/", $startdate) == 0 || preg_match("/^\d\d\d\d\-\d\d\-\d\d$/", $enddate) == 0){
-		 	  $isverified = FALSE;
-		 }
+		$topiccode = $request->topiccode;
+		$startdate = $request->startdate;
+		$enddate = $request->enddate;
+		$isverified = TRUE;
+		if(preg_match("/^\d\d\d\d\-\d\d\-\d\d$/", $startdate) == 0 || preg_match("/^\d\d\d\d\-\d\d\-\d\d$/", $enddate) == 0){
+			$isverified = FALSE;
+		}
 		if(preg_match("/^[a-zA-Z]+\.[a-zA-Z]+/", $instrumentcode) == 0){
-			  $isverified = FALSE;
+			$isverified = FALSE;
 		}
 		if(preg_match("/^[a-zA-Z]+/", $topiccode) == 0){
-			  $isverified = FALSE;
+			$isverified = FALSE;
 		}
 		if($isverified == TRUE){
-			  return 1;
+			return 1;
 		} else {
 			return 0;
 		}
 	}
-	public function getChart(Request $request){
-		$InstrumentIDs = $request->InstrumentIDs;
-		$TimeStamp = $request->TimeStamp;
-		return view('chart',['InstrumentIDs' => $InstrumentIDs, 'TimeStamp' => $TimeStamp] );
-	}
-
 }
