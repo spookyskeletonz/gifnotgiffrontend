@@ -124,10 +124,12 @@
             <div class="content">
                 <div class="title m-b-md">
                     Play Simulation
+                    "<?php echo $roundNumber;?>"
                     <div class="container" style="text-align: center">
-                        <form class="form" method="GET" action="{{url('/results')}}">
+                        <form class="form" method="POST" action="{{url('/simulation')}}">
                             <div id="topiccodes" class="form-group">
                                 <label>
+                                <input type="hidden" name="roundNumber" value="<?php echo $roundNumber+1?>">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 </label>
                             </div>
