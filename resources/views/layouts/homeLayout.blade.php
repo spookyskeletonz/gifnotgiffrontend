@@ -125,15 +125,9 @@
                 <div class="title m-b-md">
                     GifNotGif
                     <div class="container" style="text-align: center">
-                        <form class="form" method="POST" action="{{url('/')}}">
+                        <form class="form" method="GET" action="{{url('/simulation')}}">
                             <div id="topiccodes" class="form-group">
                                 <label>
-                                <input type="text" class="form-control" placeholder="Enter instrument codes comma separated" name="instrumentcode" required>
-                                <div class="input-group input-daterange">
-                                    <input placeholder="Pick start date" name = "startdate" type="text" class="form-control">
-                                    <span class="input-group-addon">to</span>
-                                    <input placeholder="Pick end date" name="enddate" type="text" class="form-control">
-                                </div>
                                 <input name="topiccode1" class="typeahead" type="text" placeholder="Topic Code 1" required>
                                 <input name="topiccode2" class="typeahead" type="text" placeholder="(optional)Topic Code 2">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
