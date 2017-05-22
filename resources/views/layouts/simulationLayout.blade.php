@@ -124,35 +124,11 @@
             <div class="content">
                 <div class="title m-b-md">
                     Play Simulation
-                    "<?php echo $roundNumber;?>"
-                    <div class="container" style="text-align: center">
-                        <form class="form" method="POST" action="{{url('/simulation')}}">
-                            <div id="topiccodes" class="form-group">
-                                <label>
-                                <input type="hidden" name="roundNumber" value="<?php echo $roundNumber+1?>">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                </label>
-                            </div>
-                            <button type="submit" class="btn">Continue</button>
-                        </form><canvas id="canvas" width="300" height="300"></canvas>
-                    </div>
-									</div>
-									@php
-										$formattedTime = explode("T",$article->TimeStamp)[0];
-										$parts = explode("-",$formattedTime);
-										$formattedTime = $parts[2]."/".$parts[1]."/".$parts[0];
+										@php
+											if ($roundNumber >=1)
+												echo $prediction;
 										@endphp
-										<div  class="panel panel-default">
-										<div class="panel-heading">
-										<h3 class="panel-title">{{ $article->Headline }}</h3>
-										</div>
-										<div class="panel-body"> {{ $article->NewsText }}</div>
-										<ul class="list-group">
-												<li class="list-group-item">{{ $article->InstrumentIDs }}</li>
-										 <li class="list-group-item">{{$article->{'Topic Codes'} }}</li>
-												<li class="list-group-item">{{$formattedTime }}</li>
-											</ul>
-            </div>
+                    "<?php echo $roundNumber;?>"
         </div>
         @yield('content')
     </body>

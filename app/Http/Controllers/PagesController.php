@@ -33,7 +33,7 @@ class PagesController extends Controller
 		//var_dump($newsData);
 		$articles = array_unique($newsData[1]->NewsDataSet, SORT_REGULAR);
 		$article =$articles[array_rand($articles)];
-   	return view('playSimulation', ['article' => $article,'roundNumber' =>$request->roundNumber]);
+   	return view('playSimulation', ['article' => $article,'roundNumber' =>$request->roundNumber, 'prediction' => $request->prediction]);
 
    	}
 
