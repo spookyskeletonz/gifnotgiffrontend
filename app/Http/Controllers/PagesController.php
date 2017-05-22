@@ -16,24 +16,41 @@ class PagesController extends Controller
    	//$end = explode("/", $request->enddate);
    	//$request->enddate = $end[2]."-".$end[1]."-".$end[0];
 		//echo $request->topiccode1;
-		$startdate = "2015-10-01T00:00:00.000Z";
-		$enddate ="2015-10-10T00:00:00.000Z";
-		$topiccode = $request->topiccode1;
-		$input = "start_date=".$startdate."&end_date=".$enddate."&instrument_id="."&topic_codes=".$topiccode;
-		$url = "http://139.59.224.37/api/api.cgi?".$input;
-		$result = file_get_contents($url);
 
-		$newsData = json_decode($result);
-		if($newsData  === NULL){
-			echo("Couldn't find any articles matching those search terms.");
-			 echo("<a href='/'>  Try Again</a>");
-			 return;
-		}
-		//echo($testString);
-		//var_dump($newsData);
-		$articles = array_unique($newsData[1]->NewsDataSet, SORT_REGULAR);
+		//if ($request->$roundNumber == 1){ //first round, need to find articles
+			$startdate = "2015-10-01T00:00:00.000Z";
+			$enddate ="2015-10-10T00:00:00.000Z";
+			$topiccode = $request->topiccode1;
+			$input = "start_date=".$startdate."&end_date=".$enddate."&instrument_id="."&topic_codes=".$topiccode;
+			$url = "http://139.59.224.37/api/api.cgi?".$input;
+			$result = file_get_contents($url);
+
+			$newsData = json_decode($result);
+			if($newsData  === NULL){
+				echo("Couldn't find any articles matching those search terms.");
+				 echo("<a href='/'>  Try Again</a>");
+				 return;
+			}
+			//echo($testString);
+			//var_dump($newsData);
+			$articles = array_unique($newsData[1]->NewsDataSet, SORT_REGULAR);
+		//}
+
+
 		$article =$articles[array_rand($articles)];
-   	return view('playSimulation', ['article' => $article,'roundNumber' =>$request->roundNumber, 'prediction' => $request->prediction]);
+
+		if ($request->roundNumber == 0){
+			$score = 0;
+		}
+		else {
+			$correctPrediction = "increase";//TODO get actual correct prediction
+			$score = $request->score;
+			if($request->prediction == $correctPrediction){
+				$score = $score + 1;
+			}
+
+	}
+   	return view('playSimulation', ['article' => $article,'roundNumber' =>$request->roundNumber, 'prediction' => $request->prediction, 'score' => $score]);
 
    	}
 
