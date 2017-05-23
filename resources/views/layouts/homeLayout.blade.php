@@ -20,17 +20,66 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
         <!-- Styles -->
         <style>
+
             html, body {
-                background-color: #fff;
+                border-style:solid;
+                border-width: 56px;
+                border-color:#888888;
+                background-color: #A8A8A8;
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
             }
-
+            footer{
+                text.align:center;
+            }
+        
             .full-height {
                 height: 100vh;
+            }
+             .banner { 
+                position: absolute;
+                top: 0px;
+                left: 0px; 
+                margin: 0 auto; 
+                background-color:#800080;
+                color:white;
+                font-family: 'Impact', 'Charcoal', sans-serif;
+                width:100%;
+                height:100px;
+                text-align:center;
+            }
+
+            .banner-content { 
+                width: 800px;
+                margin: 0 auto; 
+                padding: 10px; 
+                border: 1px solid #000 
+            }
+
+            .instructions{
+                border-style:solid;
+                border-color:#888888;
+                background-color:white;
+                font-family:TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+                font-size:20px;
+                color:black;
+                padding: 1em;
+                overflow: hidden;
+            }
+
+            .instructions2{
+                background-color:white;
+                font-family:TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+                font-size:15px;
+                color:black;
+                margin-left: 100px;
+                margin-right:100px;
+                padding: 1em;
+                overflow: hidden;
+
             }
 
             .flex-center {
@@ -51,6 +100,7 @@
 
             .content {
                 text-align: center;
+
             }
 
             .title {
@@ -119,26 +169,50 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="banner">
+          <div class="banner-context">
+            <h1>GifNotGif</h1>     
+         </div>
+        </div>
 
+        <div class="flex-center position-ref full-height">
             <div class="content">
+                <font size ="4" color="black">The ultimate source to perfect the art of making financial forecasts and becoming the next data scientist</font> 
+                <br>
+                <br>
+                <br>
+                <div class="instructions"
+                <h1> INSTRUCTIONS </h1>
+                <div class="instructions2">
+                  <span style="float:left;">Simply enter a new topic code of interest below and play the game</span>
+                  <span style="float:left;">A random article from the entered topic code will be displayed</span>
+                  <span style="float:left;">Provide an educated guess of how much change in company returns has occured since the article was released</span>
+                  <span style="float:left;">The closer your guess is the more points you win</span>
+              </div>
+              </div>
+                <br>
+                <br>
+                <br>
                 <div class="title m-b-md">
-                    GifNotGif
                     <div class="container" style="text-align: center">
                         <form class="form" method="GET" action="{{url('/simulation')}}">
                             <div id="topiccodes" class="form-group">
                                 <label>
-                                <input name="topiccode1" class="typeahead" type="text" placeholder="Topic Code 1" required>
+                                <input name="topiccode1" class="typeahead" type="text" placeholder=" Type in a Topic Code" required>
                                 <input type="hidden" name="roundNumber" value="0">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 </label>
                             </div>
-                            <button type="submit" class="btn">go</button>
+                            <button type="submit" class="btn">Play game</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        <footer>
+           <p>GifNotGif © 2017. All Rights Reversed</p>
+           <p>Contact information: <a href="mailto:someone@example.com">maliha.mian@outlook.com</a>.</p>
+        </footer>
         <script>
             $('.input-daterange input').each(function() {
                 $(this).datepicker({
