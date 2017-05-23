@@ -46,6 +46,7 @@ foreach ($articles as $article){
 		<form class="form" method="POST" action="{{url('/simulation')}}">
 				<div id="topiccodes" class="form-group">
 						<label>
+						<input type="hidden" name="topiccode1" value="<?php echo $topiccode1?>">
 						<input type="hidden" name="roundNumber" value="<?php echo $roundNumber+1?>">
 						<input type="hidden" name="score" value="<?php echo $score?>">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">

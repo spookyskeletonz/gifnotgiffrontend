@@ -29,10 +29,6 @@
                 margin: 0;
             }
 
-            .full-height {
-                height: 100vh;
-            }
-
             .flex-center {
                 align-items: center;
                 display: flex;
@@ -130,6 +126,39 @@
 										@endphp
                     "<?php echo $roundNumber;?>"
         </div>
+				<canvas id="graph" width="400" height="400"></canvas>
+       	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
         @yield('content')
     </body>
 </html>
+
+
+<script>
+var labels = new Array();
+var Values = new Array();
+
+<?php foreach ($data as $values) : ?>
+    var text = "<?php Print($values['Date']); ?>";
+    var value = "<?php Print($values['Return']); ?>"
+    labels.push(text);
+    Values.push(value);
+<?php endforeach; ?>
+
+var data = {
+  labels: labels,
+  datasets: [
+    {
+
+      fillColor: "rgba(220,220,220,0.2)",
+      strokeColor: "rgba(220,220,220,1)",
+      pointColor: "rgba(220,220,220,1)",
+      pointStrokeColor: "#fff",
+      pointHighlightFill: "#fff",
+      pointHighlightStroke: "rgba(220,220,220,1)",
+      data: Values
+    }
+  ]
+};
+var context = document.querySelector('#graph').getContext('2d');
+new Chart(context).Line(data);
+</script>
