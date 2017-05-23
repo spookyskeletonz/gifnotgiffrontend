@@ -56,7 +56,7 @@ $formattedTime = $parts[2]."/".$parts[1]."/".$parts[0];
 	</ul>
 </div>
 
-@foreach ($articles as $article)
+@foreach ($relatedArticles as $article)
 		@php
 		$formattedTime = explode("T",$article->TimeStamp)[0];
 		$parts = explode("-",$formattedTime);
@@ -67,8 +67,8 @@ $formattedTime = $parts[2]."/".$parts[1]."/".$parts[0];
 				<h3 class="panel-title">{{ $article->Headline }}</h3>
 			</div>
 			<ul class="list-group">
-				<li class="list-group-item">{{ $chosenArticle->InstrumentIDs }}</li>
-				<li class="list-group-item">{{$chosenArticle->{'Topic Codes'} }}</li>
+				<li class="list-group-item">{{ $article->InstrumentIDs }}</li>
+				<li class="list-group-item">{{$article->{'Topic Codes'} }}</li>
     		<li class="list-group-item">{{$formattedTime }}</li>
   		</ul>
 	</div>
