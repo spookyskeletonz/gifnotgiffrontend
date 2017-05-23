@@ -122,13 +122,13 @@
         <div class="flex-center position-ref full-height">
 
             <div class="content">
-                {{-- <div class="title m-b-md">
+                 <div class="title m-b-md">
                     Play Simulation
 										@php
 											if ($roundNumber >=1)
 												echo $prediction;
 										@endphp
-                    "<?php echo $roundNumber;?>" --}}
+                    "<?php echo $roundNumber;?>"
         </div>
         @yield('content')
     </body>
