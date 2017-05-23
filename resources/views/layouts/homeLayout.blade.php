@@ -35,6 +35,8 @@
             footer{
                 text.align:center;
             }
+
+           
         
             .full-height {
                 height: 100vh;
@@ -57,6 +59,9 @@
                 margin: 0 auto; 
                 padding: 10px; 
                 border: 1px solid #000 
+            }
+            .description{
+                font: bold 12px/30px Georgia, serif;
             }
 
             .instructions{
@@ -177,16 +182,18 @@
 
         <div class="flex-center position-ref full-height">
             <div class="content">
+                <div class= "description">
                 <font size ="4" color="black">The ultimate source to perfect the art of making financial forecasts and becoming the next data scientist</font> 
+            </div>
                 <br>
                 <br>
                 <br>
                 <div class="instructions"
                 <h1> INSTRUCTIONS </h1>
                 <div class="instructions2">
-                  <span style="float:left;">Simply enter a new topic code of interest below and play the game</span>
+                  <span style="float:left;">Simply enter a new topic code of interest below and click play game</span>
                   <span style="float:left;">A random article from the entered topic code will be displayed</span>
-                  <span style="float:left;">Provide an educated guess of how much change in company returns has occured since the article was released</span>
+                  <span style="float:left;">Provide an educated guess of how much change in company returns has occured since the article was published</span>
                   <span style="float:left;">The closer your guess is the more points you win</span>
               </div>
               </div>
@@ -203,7 +210,7 @@
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 </label>
                             </div>
-                            <button type="submit" class="btn">Play game</button>
+                            <button type="submit" style="font-size:15pt; background-color:white; color:black"bclass="btn">Play game</button>
                         </form>
                     </div>
                 </div>
