@@ -21,13 +21,33 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background-color: #A8A8A8;
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
             }
+
+            label{
+            display:block;   
+            text-align:right;
+
+           }
+           .headings{
+              vertical-align: top;
+              text-align: left;
+
+           }
+           .articles_left{
+            float:left;
+
+           }
+
+            .button{
+                float:right;
+            }
+    
 
             .full-height {
                 height: 100vh;
@@ -54,7 +74,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 60px;
             }
 
             .links > a {
@@ -122,7 +142,10 @@
         <div class="flex-center position-ref full-height">
 
             <div class="content">
-                <div class="title m-b-md">
+                 <div class="title","m-b-md">
+                    <br>
+                    <br>
+                    <br>
                     Play Simulation
 										@php
 											if ($roundNumber >=1)
@@ -131,5 +154,12 @@
                     "<?php echo $roundNumber;?>"
         </div>
         @yield('content')
+         <br>
+         <br>
+         <br>
+         <footer>
+           <p>GifNotGif © 2017. All Rights Reversed</p>
+           <p>Contact information: <a href="mailto:someone@example.com">maliha.mian@outlook.com</a>.</p>
+        </footer>
     </body>
 </html>

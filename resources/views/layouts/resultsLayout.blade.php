@@ -20,14 +20,19 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
         <!-- Styles -->
         <style>
-            html, body {
-                background-color: #fff;
+           html, body {
+                background-color: #A8A8A8;
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
             }
+
+            footer{
+                text.align:center;
+            }
+           
 
             .full-height {
                 height: 100vh;
@@ -122,7 +127,7 @@
         <div class="flex-center position-ref full-height">
 
             <div class="content">
-                <div class="title m-b-md">
+                <div class="title", "m-b-md">
                     Results
                     <div class="container" style="text-align: center">
                         <form class="form" method="GET" action="{{url('/')}}">
@@ -138,5 +143,9 @@
             </div>
         </div>
         @yield('content')
+        <footer>
+           <p>GifNotGif © 2017. All Rights Reversed</p>
+           <p>Contact information: <a href="mailto:someone@example.com">maliha.mian@outlook.com</a>.</p>
+        </footer>
     </body>
 </html>
