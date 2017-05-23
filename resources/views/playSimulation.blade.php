@@ -2,25 +2,63 @@
 <title>Welcome to the Simulation</title>
 @section('content')
 
+
+
 @php
-/*
-$dateOfInterest = $article->TimeStamp;
-$dateOfInterest = explode("T",$dateOfInterest)[0];
-$parts = explode("-",$dateOfInterest);
-$dateOfInterest = $parts[2]."%2F".$parts[1]."%2F".$parts[0];
-$article->InstrumentIDs = preg_replace("/,\d+[^,]*,/",",",$article->InstrumentIDs);
-$url = "http://ec2-54-160-211-66.compute-1.amazonaws.com:3000/api/company_returns?InstrumentID="."BHP.AX"."&UpperWindow=5&LowerWindow=5&ListOfVar=AV_Return&DateOfInterest=".$dateOfInterest;
-$result = file_get_contents($url);
-$vars = json_decode($result, true);
-$vars = str_replace("string(10)","", $vars);
-var_dump($vars);
- //$data = ($vars['CompanyReturns'][0]['Data']);
- */
+//get formattedTime for chosenArticle
+$formattedTime = explode("T",$chosenArticle->TimeStamp)[0];
+$parts = explode("-",$formattedTime);
+$formattedTime = $parts[2]."/".$parts[1]."/".$parts[0];
+//echo $score;
+
+
+//get id of the company user is predicting for
+//echo $chosenArticle->InstrumentIDs;
+$allIDs = explode(",",$chosenArticle->InstrumentIDs);
+$chosenID = $allIDs[0]; //assumes theres at least one id
+
+//get related range for chosenArticle
+//$chosenTimestamp = mktime(0, 0, 0, $parts[0], $parts[1], $parts[2]);
+//$startRange = DateTime::createFromFormat('D, d/m/Y - H:i', $str_date););
+//$endRange = new DateTime('@' . $chosenTimestamp);
+
+
+//get related articles
+$relatedArticles = array();
+foreach ($articles as $article){
+	$articleIDs = explode(",", $article->InstrumentIDs);
+	if (in_array ($chosenID , $articleIDs) && $article != $chosenArticle){
+		//$parts = explode("T",$chosenArticle->TimeStamp)[0];
+		//$parts = explode("-",$parts);
+		//$relatedTimestamp = mktime(0, 0, 0, $parts[0], $parts[1], $parts[2]);
+		//$relatedDate = new DateTime('@' . $relatedTimestamp);
+	//	if ($relatedDate>= $startRange AND $relatedDate <= $endRange){
+			$relatedArticles[] = $article; //add to related articles
+	//	}
+		//time stuff
+
+	}
+}
 @endphp
 
 
+<div class="container">
+	<div class="headings">
+	  <br>
+	  <h1> Key Article </h1>
+	  <br>
+     </div>
 
-<div class="container" style="text-align: center">
+   <div class="articles_left">
+   	<p> {{ $chosenArticle->Headline }}</p>
+   
+	  <ul class="list-group">
+		<li class="list-group-item">{{ $chosenArticle->InstrumentIDs }}</li>
+		<li class="list-group-item">{{$chosenArticle->{'Topic Codes'} }}</li>
+		<li class="list-group-item">{{$formattedTime }}</li>
+	  </ul>
+	</div>
+
 		<form class="form" method="POST" action="{{url('/simulation')}}">
 				<div id="topiccodes" class="form-group">
 						<label>
@@ -29,30 +67,41 @@ var_dump($vars);
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</label>
 				</div>
-				<input type="radio" name="prediction" value="increase"> Increase<br>
-				<input type="radio" name="prediction" value="decrease"> Decrease<br>
-				<button type="submit" class="btn">Continue</button>
-		</form><canvas id="canvas" width="300" height="300"></canvas>
-</div>
-@php
-$formattedTime = explode("T",$article->TimeStamp)[0];
-$parts = explode("-",$formattedTime);
-$formattedTime = $parts[2]."/".$parts[1]."/".$parts[0];
-@endphp
+				<label>
+			    <input type="radio" name="prediction" value="increase" class="button">  Increase </label>
+			    <label>
+				<input type="radio" name="prediction" value="decrease" class="button"> Decrease </label>
+				<br>
 
-@php
-echo $score;
-@endphp
+				<button type="submit" style="float:right"class="button">Continue</button>
+				<br>
+				<br>
+				<br>
+				<br>
+				<div class="headings">
+	            <br>
+	            <br>
+	            <h1> Related Articles </h1>
+	            <br>
+                </div>
 
-<div  class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title">{{ $article->Headline }}</h3>
-	</div>
-	<div class="panel-body"> {{ $article->NewsText }}</div>
-	<ul class="list-group">
-		<li class="list-group-item">{{ $article->InstrumentIDs }}</li>
-		<li class="list-group-item">{{$article->{'Topic Codes'} }}</li>
-		<li class="list-group-item">{{$formattedTime }}</li>
-	</ul>
-</div>
+                @foreach ($relatedArticles as $article)
+		        @php
+		        $formattedTime = explode("T",$article->TimeStamp)[0];
+		        $parts = explode("-",$formattedTime);
+		        $formattedTime = $parts[2]."/".$parts[1]."/".$parts[0];
+		        @endphp
+		        <div  class="panel" ,"panel-default">
+			    <div class="panel-heading">
+				<h3 class="panel-title">{{ $article->Headline }}</h3>
+			    </div>
+			   <ul class="list-group">
+    		   <li class="list-group-item">{{$formattedTime }}</li>
+  		      </ul>
+	          </div>
+	         @endforeach
+            </div>
+    
+
+
 @stop
