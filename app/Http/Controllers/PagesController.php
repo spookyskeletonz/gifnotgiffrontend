@@ -10,6 +10,7 @@ class PagesController extends Controller
 		return view('welcome');
 	}
 
+
     public function playSimulation(Request $request){
 		//$start = explode("/", $request->startdate);
    	//$request->startdate = $start[2]."-".$start[1]."-".$start[0];
@@ -31,11 +32,11 @@ class PagesController extends Controller
 				 echo("<a href='/'>  Try Again</a>");
 				 return;
 			}
+
 			//echo($testString);
 			//var_dump($newsData);
-			$articles = array_unique($newsData[1]->NewsDataSet, SORT_REGULAR);
+		$articles = array_unique($newsData[1]->NewsDataSet, SORT_REGULAR);
 		//}
-
 
 		$article =$articles[array_rand($articles)];
 
@@ -48,9 +49,9 @@ class PagesController extends Controller
 			if($request->prediction == $correctPrediction){
 				$score = $score + 1;
 			}
+		}
 
-	}
-   	return view('playSimulation', ['article' => $article,'roundNumber' =>$request->roundNumber, 'prediction' => $request->prediction, 'score' => $score]);
+   	return view('playSimulation', ['chosenArticle' => $article, 'articles' => $articles,'roundNumber' =>$request->roundNumber, 'prediction' => $request->prediction, 'score' => $score]);
 
    	}
 
