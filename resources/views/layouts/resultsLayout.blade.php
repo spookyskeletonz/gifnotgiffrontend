@@ -123,7 +123,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Results
+                    Results "<?php echo $score;?>"
                     <div class="container" style="text-align: center">
                         <form class="form" method="GET" action="{{url('/')}}">
                             <div id="topiccodes" class="form-group">

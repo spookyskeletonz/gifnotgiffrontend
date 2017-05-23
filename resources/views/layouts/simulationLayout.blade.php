@@ -82,7 +82,7 @@
                 outline: none;
             }
 
-            .tt-input { 
+            .tt-input {
                 box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
             }
 
@@ -90,7 +90,7 @@
                 color: #999;
             }
 
-            .tt-menu { 
+            .tt-menu {
                 width: 422px;
                 margin-top: 12px;
                 padding: 8px 0;
@@ -124,21 +124,46 @@
             <div class="content">
                 <div class="title m-b-md">
                     Play Simulation
+                                        @php
+                                            if ($roundNumber >=1)
+                                                echo $prediction;
+                                        @endphp
                     "<?php echo $roundNumber;?>"
-                    <div class="container" style="text-align: center">
-                        <form class="form" method="POST" action="{{url('/simulation')}}">
-                            <div id="topiccodes" class="form-group">
-                                <label>
-                                <input type="hidden" name="roundNumber" value="<?php echo $roundNumber+1?>">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                </label>
-                            </div>
-                            <button type="submit" class="btn">Continue</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
+
+        <canvas id="graph" width="400" height="400"></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+
         @yield('content')
     </body>
 </html>
+
+<script>
+var labels = new Array();
+var Values = new Array();
+
+<?php foreach ($data as $values) : ?>
+    var text = "<?php Print($values['Date']); ?>";
+    var value = "<?php Print($values['Return']); ?>"
+    labels.push(text);
+    Values.push(value);
+<?php endforeach; ?>
+
+var data = {
+  labels: labels,
+  datasets: [
+    {
+      
+      fillColor: "rgba(220,220,220,0.2)",
+      strokeColor: "rgba(220,220,220,1)",
+      pointColor: "rgba(220,220,220,1)",
+      pointStrokeColor: "#fff",
+      pointHighlightFill: "#fff",
+      pointHighlightStroke: "rgba(220,220,220,1)",
+      data: Values
+    }
+  ]
+};
+var context = document.querySelector('#graph').getContext('2d');
+new Chart(context).Line(data);
+</script>

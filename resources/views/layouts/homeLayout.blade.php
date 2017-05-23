@@ -129,7 +129,8 @@
                             <div id="topiccodes" class="form-group">
                                 <label>
                                 <input name="topiccode1" class="typeahead" type="text" placeholder="Topic Code 1" required>
-                                <input type="hidden" name="roundNumber" value="0">
+                                <input type="hidden" name="roundNumber" value="1">
+                                <input type="hidden" name="score" value="0">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 </label>
                             </div>
