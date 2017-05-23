@@ -4,18 +4,39 @@
 
 
 
-@php //get id of the company user is predicting for
+@php
+//get formattedTime for chosenArticle
+$formattedTime = explode("T",$chosenArticle->TimeStamp)[0];
+$parts = explode("-",$formattedTime);
+$formattedTime = $parts[2]."/".$parts[1]."/".$parts[0];
+//echo $score;
+
+
+//get id of the company user is predicting for
 //echo $chosenArticle->InstrumentIDs;
 $allIDs = explode(",",$chosenArticle->InstrumentIDs);
 $chosenID = $allIDs[0]; //assumes theres at least one id
-@endphp
 
-@php //get related articles
+//get related range for chosenArticle
+//$chosenTimestamp = mktime(0, 0, 0, $parts[0], $parts[1], $parts[2]);
+//$startRange = DateTime::createFromFormat('D, d/m/Y - H:i', $str_date););
+//$endRange = new DateTime('@' . $chosenTimestamp);
+
+
+//get related articles
 $relatedArticles = array();
 foreach ($articles as $article){
 	$articleIDs = explode(",", $article->InstrumentIDs);
-	if (in_array ($chosenID , $articleIDs)){
-		$relatedArticles[] = $article; //add to related articles
+	if (in_array ($chosenID , $articleIDs) && $article != $chosenArticle){
+		//$parts = explode("T",$chosenArticle->TimeStamp)[0];
+		//$parts = explode("-",$parts);
+		//$relatedTimestamp = mktime(0, 0, 0, $parts[0], $parts[1], $parts[2]);
+		//$relatedDate = new DateTime('@' . $relatedTimestamp);
+	//	if ($relatedDate>= $startRange AND $relatedDate <= $endRange){
+			$relatedArticles[] = $article; //add to related articles
+	//	}
+		//time stuff
+
 	}
 }
 @endphp
@@ -35,14 +56,6 @@ foreach ($articles as $article){
 				<button type="submit" class="btn">Continue</button>
 		</form><canvas id="canvas" width="300" height="300"></canvas>
 </div>
-
-@php
-
-$formattedTime = explode("T",$chosenArticle->TimeStamp)[0];
-$parts = explode("-",$formattedTime);
-$formattedTime = $parts[2]."/".$parts[1]."/".$parts[0];
-//echo $score;
-@endphp
 
 <div  class="panel panel-default">
 	<div class="panel-heading">
@@ -67,8 +80,6 @@ $formattedTime = $parts[2]."/".$parts[1]."/".$parts[0];
 				<h3 class="panel-title">{{ $article->Headline }}</h3>
 			</div>
 			<ul class="list-group">
-				<li class="list-group-item">{{ $article->InstrumentIDs }}</li>
-				<li class="list-group-item">{{$article->{'Topic Codes'} }}</li>
     		<li class="list-group-item">{{$formattedTime }}</li>
   		</ul>
 	</div>
