@@ -45,32 +45,33 @@ foreach ($articles as $article){
 <div class="container">
 	<div class="headings">
 	  <br>
-	  <h1> Key Article </h1>
+	   <div class="subheadings">
+	     <h1> Key Article </h1>
+	   </div>
 	  <br>
      </div>
 
    <div class="articles_left">
    	<p> {{ $chosenArticle->Headline }}</p>
-   
+   	<p> {{ $chosenArticle->NewsText }} }}</p> 
 	  <ul class="list-group">
 		<li class="list-group-item">{{ $chosenArticle->InstrumentIDs }}</li>
 		<li class="list-group-item">{{$chosenArticle->{'Topic Codes'} }}</li>
 		<li class="list-group-item">{{$formattedTime }}</li>
 	  </ul>
 	</div>
-
 		<form class="form" method="POST" action="{{url('/simulation')}}">
 				<div id="topiccodes" class="form-group">
 						<label>
-						<input type="hidden" name="roundNumber" value="<?php echo $roundNumber+1?>">
-						<input type="hidden" name="score" value="<?php echo $score?>">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						    <input type="hidden" name="roundNumber" value="<?php echo $roundNumber+1?>">
+						    <input type="hidden" name="score" value="<?php echo $score?>">
+						    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</label>
-				</div>
+				  </div>
 				<label>
-			    <input type="radio" name="prediction" value="increase" class="button">  Increase </label>
+			      <input type="radio" name="prediction" value="increase" class="button">  Increase </label>
 			    <label>
-				<input type="radio" name="prediction" value="decrease" class="button"> Decrease </label>
+				  <input type="radio" name="prediction" value="decrease" class="button"> Decrease </label>
 				<br>
 
 				<button type="submit" style="float:right"class="button">Continue</button>
@@ -79,13 +80,25 @@ foreach ($articles as $article){
 				<br>
 				<br>
 				<div class="headings">
+	             <br>
+	             <br>
+	             <br>
+               </div>
+                </form><canvas id="canvas" width="300" height="300"></canvas>
+                <div class="headings">
 	            <br>
 	            <br>
-	            <h1> Related Articles </h1>
 	            <br>
-                </div>
+	            <br>
+	            <br>
+	            <div class="subheadings">
+	              <h1> Related Articles </h1>
+	              </div>
+	               <br>
+                 </div>
+               </div>
 
-                @foreach ($relatedArticles as $article)
+     @foreach ($relatedArticles as $article)
 		        @php
 		        $formattedTime = explode("T",$article->TimeStamp)[0];
 		        $parts = explode("-",$formattedTime);
@@ -100,8 +113,5 @@ foreach ($articles as $article){
   		      </ul>
 	          </div>
 	         @endforeach
-            </div>
-    
-
-
+         
 @stop
