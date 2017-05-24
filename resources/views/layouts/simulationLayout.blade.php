@@ -18,6 +18,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
         <!-- DatePicker.js bundle -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+        <!-- chart generation -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
         <!-- Styles -->
         <style>
             html, body {
@@ -39,8 +41,17 @@
               text-align: left;
 
            }
+           .subheadings {
+                font: bold 12px/30px Georgia, serif;
+                text-decoration: underline;
+            
+           }
            .articles_left{
+            position: absolute;
             float:left;
+            left:10px;
+            width: 500px;
+            border: 1px solid #000 
 
            }
 
@@ -139,13 +150,10 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="flex-center", "position-ref" ,"full-height">
 
             <div class="content">
                  <div class="title","m-b-md">
-                    <br>
-                    <br>
-                    <br>
                     Play Simulation
 										@php
 											if ($roundNumber >=1)
@@ -163,3 +171,5 @@
         </footer>
     </body>
 </html>
+
+
