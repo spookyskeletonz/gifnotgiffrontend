@@ -23,7 +23,7 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #DCDCDC;
+                background-color: #A8A8A8;
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
@@ -51,8 +51,8 @@
             position: absolute;
             float:left;
             left:10px;
-            width: 600px;
-            border: 1px solid #000; 
+            width: 900px;
+            border: 1px solid #000;
             color:black;
             font-weight: bold;
            }
@@ -93,8 +93,6 @@
 
             .title {
                 font-size: 60px;
-                color:black;
-                font-weight: bold;
             }
 
             .links > a {
@@ -206,12 +204,8 @@ foreach ($articles as $article){
         <div class="flex-center", "position-ref" ,"full-height">
             <div class="content">
                  <div class="title","m-b-md">
-                    Play Simulation
-                                        @php
-                                            if ($roundNumber >=1)
-                                                echo $prediction;
-                                        @endphp
-                    "<?php echo $roundNumber;?>"
+                    Round:
+                    <?php echo $roundNumber;?>
         </div>
     </div>
   </div>
@@ -227,7 +221,7 @@ foreach ($articles as $article){
     <p> {{ $chosenArticle->Headline }}</p>
     <p> {{ $chosenArticle->NewsText }} }}</p> 
       <ul class="list-group">
-        <li class="list-group-item">{{ $chosenArticle->InstrumentIDs }}</li>
+        <li class="list-group-item">{{ $chosenID}}</li>
         <li class="list-group-item">{{$chosenArticle->{'Topic Codes'} }}</li>
         <li class="list-group-item">{{$formattedTime }}</li>
       </ul>
@@ -267,6 +261,11 @@ foreach ($articles as $article){
                 $formattedTime = explode("T",$article->TimeStamp)[0];
                 $parts = explode("-",$formattedTime);
                 $formattedTime = $parts[2]."/".$parts[1]."/".$parts[0];
+                $i = rand(0,1);
+                $result = "Stock Return Decreased";
+                if ($i == 0){
+                    $result = "Stock Return Increased";    
+                }
                 @endphp
                 <div class="related_articles">
                 <div  class="panel" ,"panel-default">
@@ -275,6 +274,7 @@ foreach ($articles as $article){
                 </div>
                <ul class="list-group">
                <li class="list-group-item">{{$formattedTime }}</li>
+               <li class="list-group-item">{{$result }}</li>
               </ul>
               </div>
               </div>
