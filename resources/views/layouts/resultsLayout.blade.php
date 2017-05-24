@@ -21,7 +21,7 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background-color: #A8A8A8;
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
@@ -39,8 +39,22 @@
                 justify-content: center;
             }
 
+             .return_button{
+                background-color: white;
+                color: black;
+            }
+    
+
             .position-ref {
                 position: relative;
+            }
+
+            .game_over{
+                color:red;
+            }
+             .game_over1{
+                color:black;
+                font-weight:bold;
             }
 
             .top-right {
@@ -122,8 +136,14 @@
         <div class="flex-center position-ref full-height">
 
             <div class="content">
-                <div class="title m-b-md">
-                  Results "<?php echo $score;?>"
+                <div class="title m-b-md"> 
+                  <div class="game_over1">             
+                    GAME OVER
+                    <br>
+                   </div>
+                  <div class="game_over">
+                  Result=<?php echo $score;?>
+                  </div>
                     <div class="container" style="text-align: center">
                         <form class="form" method="GET" action="{{url('/')}}">
                             <div id="topiccodes" class="form-group">

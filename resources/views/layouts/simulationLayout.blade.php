@@ -23,7 +23,7 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #A8A8A8;
+                background-color: #DCDCDC;
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
@@ -51,8 +51,8 @@
             position: absolute;
             float:left;
             left:10px;
-            width: 900px;
-            border: 1px solid #000 
+            width: 600px;
+            border: 1px solid #000; 
             color:black;
             font-weight: bold;
            }
@@ -93,6 +93,8 @@
 
             .title {
                 font-size: 60px;
+                color:black;
+                font-weight: bold;
             }
 
             .links > a {
@@ -265,11 +267,6 @@ foreach ($articles as $article){
                 $formattedTime = explode("T",$article->TimeStamp)[0];
                 $parts = explode("-",$formattedTime);
                 $formattedTime = $parts[2]."/".$parts[1]."/".$parts[0];
-                $i = rand(0,1);
-                $result = "Stock Return Decreased";
-                if ($i == 0){
-                    $result = "Stock Return Increased";    
-                }
                 @endphp
                 <div class="related_articles">
                 <div  class="panel" ,"panel-default">
@@ -278,7 +275,6 @@ foreach ($articles as $article){
                 </div>
                <ul class="list-group">
                <li class="list-group-item">{{$formattedTime }}</li>
-               <li class="list-group-item">{{$result }}</li>
               </ul>
               </div>
               </div>
