@@ -82,7 +82,7 @@
                 outline: none;
             }
 
-            .tt-input { 
+            .tt-input {
                 box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
             }
 
@@ -90,7 +90,7 @@
                 color: #999;
             }
 
-            .tt-menu { 
+            .tt-menu {
                 width: 422px;
                 margin-top: 12px;
                 padding: 8px 0;
@@ -123,7 +123,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Results
+                  Results "<?php echo $score;?>"
                     <div class="container" style="text-align: center">
                         <form class="form" method="GET" action="{{url('/')}}">
                             <div id="topiccodes" class="form-group">
