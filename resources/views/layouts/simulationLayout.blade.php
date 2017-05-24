@@ -265,6 +265,11 @@ foreach ($articles as $article){
                 $formattedTime = explode("T",$article->TimeStamp)[0];
                 $parts = explode("-",$formattedTime);
                 $formattedTime = $parts[2]."/".$parts[1]."/".$parts[0];
+                $i = rand(0,1);
+                $result = "Stock Return Decreased";
+                if ($i == 0){
+                    $result = "Stock Return Increased";    
+                }
                 @endphp
                 <div class="related_articles">
                 <div  class="panel" ,"panel-default">
@@ -273,6 +278,7 @@ foreach ($articles as $article){
                 </div>
                <ul class="list-group">
                <li class="list-group-item">{{$formattedTime }}</li>
+               <li class="list-group-item">{{$result }}</li>
               </ul>
               </div>
               </div>
