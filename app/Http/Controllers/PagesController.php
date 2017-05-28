@@ -13,12 +13,12 @@ class PagesController extends Controller
 
 
 	public function playSimulation(Request $request){
-			if ($request->roundNumber > 3){
+			if ($request->roundNumber > 10){
             return view('results', ['score' => $request->score]);
         }
         	
-			$startdate = "2015-10-01T00:00:00.000Z";
-			$enddate ="2015-10-10T00:00:00.000Z";
+			$startdate = "2015-01-01T00:00:00.000Z";
+			$enddate ="2015-12-10T00:00:00.000Z";
 			$topiccode = $request->topiccode1;
 			$input = "start_date=".$startdate."&end_date=".$enddate."&instrument_id="."&topic_codes=".$topiccode;
 			$url = "http://139.59.224.37/api/api.cgi?".$input;
