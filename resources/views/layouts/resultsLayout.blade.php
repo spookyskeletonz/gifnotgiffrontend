@@ -157,6 +157,13 @@
                 </div>
             </div>
         </div>
+         <br>
+         <br>
+         <br>
+         <footer>
+           <p>GifNotGif © 2017. All Rights Reversed</p>
+           <p>Contact information: <a href="mailto:someone@example.com">maliha.mian@outlook.com</a>.</p>
+        </footer>
         @yield('content')
     </body>
 </html>

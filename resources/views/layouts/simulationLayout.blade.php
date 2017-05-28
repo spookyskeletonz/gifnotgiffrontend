@@ -30,16 +30,13 @@
                 height: 100vh;
                 margin: 0;
             }
-
             label{
             display:block;   
             text-align:right;
-
            }
            .headings{
               vertical-align: top;
               text-align: left;
-
            }
            .subheadings {
                 font: bold 12px/30px Georgia, serif;
@@ -51,50 +48,41 @@
             position: absolute;
             float:left;
             left:10px;
-            width: 900px;
+            width: 600px;
             border: 1px solid #000;
             color:black;
             font-weight: bold;
            }
-
            .related_articles{
             color:black;
             font-weight: bold;
            }
-
             .button{
                 float:right;
             }
     
-
             .full-height {
                 height: 100vh;
             }
-
             .flex-center {
                 align-items: center;
                 display: flex;
                 justify-content: center;
             }
-
             .position-ref {
                 position: relative;
             }
-
             .top-right {
                 position: absolute;
                 right: 10px;
                 top: 18px;
             }
-
             .content {
                 text-align: center;
             }
-
             .title {
                 font-size: 60px;
             }
-
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
@@ -104,7 +92,6 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-
             .m-b-md {
                 margin-bottom: 30px;
             }
@@ -119,15 +106,12 @@
                 border-radius: 8px;
                 outline: none;
             }
-
             .tt-input {
                 box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
             }
-
             .tt-hint {
                 color: #999;
             }
-
             .tt-menu {
                 width: 422px;
                 margin-top: 12px;
@@ -138,23 +122,18 @@
                 border-radius: 8px;
                 box-shadow: 0 5px 10px rgba(0,0,0,.2);
             }
-
             .tt-suggestion {
                 padding: 3px 20px;
                 font-size: 18px;
                 line-height: 24px;
             }
-
             .tt-suggestion.tt-cursor {
                 color: #fff;
                 background-color: #0097cf;
-
             }
-
             .tt-suggestion p {
                 margin: 0;
             }
-
             .hor_align{
                 float:right;
             }            
@@ -168,19 +147,14 @@ $formattedTime = explode("T",$chosenArticle->TimeStamp)[0];
 $parts = explode("-",$formattedTime);
 $formattedTime = $parts[2]."/".$parts[1]."/".$parts[0];
 //echo $score;
-
-
 //get id of the company user is predicting for
 //echo $chosenArticle->InstrumentIDs;
 $allIDs = explode(",",$chosenArticle->InstrumentIDs);
 $chosenID = $allIDs[0]; //assumes theres at least one id
-
 //get related range for chosenArticle
 //$chosenTimestamp = mktime(0, 0, 0, $parts[0], $parts[1], $parts[2]);
 //$startRange = DateTime::createFromFormat('D, d/m/Y - H:i', $str_date););
 //$endRange = new DateTime('@' . $chosenTimestamp);
-
-
 //get related articles
 $relatedArticles = array();
 foreach ($articles as $article){
@@ -194,7 +168,6 @@ foreach ($articles as $article){
             $relatedArticles[] = $article; //add to related articles
     //  }
         //time stuff
-
     }
 }
 @endphp
@@ -305,21 +278,16 @@ labels.push("04/01/2015");
 labels.push("05/01/2015");
 labels.push("06/01/2015");
 labels.push("07/01/2015");
-
 <?php $i = 0; ?>
 <?php while ($i < 7){ 
     $i++;
     $data[] = mt_rand(-1, 1)/rand(1,50);
 }
 ?>
-
 <?php foreach ($data as $values) : ?>
     var value = "<?php Print($values); ?>"
     Values.push(value);
 <?php endforeach; ?>
-
-
-
 var data = {
   labels: labels,
   datasets: [
@@ -338,4 +306,3 @@ var data = {
 var context = document.querySelector('#graph').getContext('2d');
 new Chart(context).Line(data);
 </script>
-

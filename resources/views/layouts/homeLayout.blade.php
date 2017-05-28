@@ -173,7 +173,6 @@
                   <span style="float:left;">Simply enter a new topic code of interest below and click play game</span>
                   <span style="float:left;">A random article from the entered topic code will be displayed</span>
                   <span style="float:left;">Provide an educated guess of how much change in company returns has occured since the article was published</span>
-                  <span style="float:left;">The closer your guess is the more points you win</span>
               </div>
               </div>
                 <br>
