@@ -18,7 +18,7 @@ class PagesController extends Controller
         }
         	
 			$startdate = "2015-01-01T00:00:00.000Z";
-			$enddate ="2015-12-10T00:00:00.000Z";
+			$enddate ="2015-12-31T00:00:00.000Z";
 			$topiccode = $request->topiccode1;
 			$input = "start_date=".$startdate."&end_date=".$enddate."&instrument_id="."&topic_codes=".$topiccode;
 			$url = "http://139.59.224.37/api/api.cgi?".$input;
@@ -43,7 +43,7 @@ class PagesController extends Controller
 			        $valid = false;
 			        $count = 0;
 			        $instrumentCode = $listInstruments[0];
-			        /*
+			        
 			        while ($valid == false){
 			            $instrumentCode = $listInstruments[$count];
 			            $count++;
@@ -58,10 +58,10 @@ class PagesController extends Controller
 			            }
 			        }
 
-			        $returnsData = $returnsData['CompanyReturns'];*/
+			        $returnsData = $returnsData['CompanyReturns'];
 			        $correctPrediction = "increase";
 			        
-			        /*$average = ($returnsData[0]['Data'][8]['Return'] + $returnsData[0]['Data'][9]['Return'] + $returnsData[0]['Data'][10]['Return']) / 3;
+			        $average = ($returnsData[0]['Data'][8]['Return'] + $returnsData[0]['Data'][9]['Return'] + $returnsData[0]['Data'][10]['Return']) / 3;
 			        if ($average < 0){
 			            echo "Decrease occurred with return of ".$average;
 			            $correctPrediction = "decrease";
@@ -69,19 +69,19 @@ class PagesController extends Controller
 			            echo "Increase occurred with return of ".$average;
 			            $correctPrediction = "increase";
 			        }
-					*/
+					
 
 			        $score = $request->score;
 			        if($request->prediction == $correctPrediction){
 			            $score = $score + 1;
 			        }
 			        $count = 0;
-			        /*
+			        
 			        while ($count < 8){
 			            $chartData[] =$returnsData[0]['Data'][$count];
 			            $count++;
 			        }
-					*/
+					
 			        return view('playSimulation', ['chosenArticle' => $article,'instrumentCode' =>$instrumentCode, 'articles' => $articles, 'roundNumber' => $request->roundNumber, 'prediction' => $request->prediction, 'score' => $score, 'topiccode1' => $request->topiccode1]);
 	}
 
